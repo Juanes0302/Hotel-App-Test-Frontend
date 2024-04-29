@@ -45,14 +45,34 @@
               <td mat-cell *matCellDef="let element"> {{element.number_bathrooms}} </td>
             </ng-container>
 
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef> Status </th>s
+              <td mat-cell *matCellDef="let element"> {{element.status ? 'available' : 'busy' }} </td>
+            </ng-container>
+
             <!-- Symbol Column -->
-            <ng-container matColumnDef="acciones">
-              <th mat-header-cell *matHeaderCellDef> acciones </th>
+            <ng-container matColumnDef="menu">
+              <th mat-header-cell *matHeaderCellDef> Menu </th>
               <td mat-cell *matCellDef="let element">
-                <button matTooltip="Eliminar elemento" mat-icon-button color="warn">
-                  <mat-icon>delete</mat-icon>
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                  <mat-icon>more_vert</mat-icon>
                 </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item>
+                    <mat-icon>edit</mat-icon>
+                    <span>Edit</span>
+                  </button>
+                  <button mat-menu-item (click)=" eliminar(element.id)">
+                    <mat-icon>delete</mat-icon>
+                    <span>Delete</span>
+                  </button>
+                  <button mat-menu-item>
+                    <mat-icon>visibility</mat-icon>
+                    <span>Show</span>
+                  </button>
+                </mat-menu>
               </td>
+        
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

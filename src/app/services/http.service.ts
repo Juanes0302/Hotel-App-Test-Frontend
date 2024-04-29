@@ -27,4 +27,21 @@ export class HttpService {
       },
     });
   }
+  Crear(room:  iRoom): Observable<iRoom[]>{
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    });
+    return this.httpCliente.post<iRoom[]>('https://localhost:7237/api/Rooms', room, { headers: headers });
+  }
+  Eliminar(id: number){
+    const option = {
+     headers: new HttpHeaders({
+         'Content-Type': 'application/json'
+     }),
+     body: id
+    };
+    return this.httpCliente.delete('https://localhost:7237/api/Rooms/${id}', option);
+ }
 }

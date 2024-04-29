@@ -16,7 +16,8 @@ export class IndexComponent implements OnInit {
     'bedroom_numbers',
     'bed_numbers',
     'number_bathrooms',
-    'acciones',
+    'status',
+    'menu',
   ];
   dataSource = new MatTableDataSource<any>([]);
 
@@ -51,8 +52,19 @@ export class IndexComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
     });
   }
-
-
-
-  eliminar() {}
+  eliminar(id_room: number) {
+    let confirmacion = confirm('¿Está seguro de que desea eliminar este elemento?');
+    if (confirmacion) {
+      this.httpService.Eliminar(id_room)
+        .subscribe(
+          () => {
+            console.log('Elemento eliminado correctamente');
+            this.LeerTodo();
+          },
+          (error) => {
+            console.error('Error al eliminar el elemento:', error);
+          }
+        );
+    }
+  }
 }
