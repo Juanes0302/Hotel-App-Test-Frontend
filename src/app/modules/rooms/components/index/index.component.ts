@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { HttpService } from 'src/app/services/http.service';
 import { FormComponent } from '../form/form.component';
+import { FormEditComponent } from '../form-edit/form-edit.component';
 
 @Component({
   selector: 'app-index',
@@ -20,6 +21,7 @@ export class IndexComponent implements OnInit {
     'menu',
   ];
   dataSource = new MatTableDataSource<any>([]);
+  roomData: any;
 
   constructor(private httpService: HttpService,
     public dialog: MatDialog
@@ -58,13 +60,36 @@ export class IndexComponent implements OnInit {
       this.httpService.Eliminar(id_room)
         .subscribe(
           () => {
-            console.log('Elemento eliminado correctamente');
+            alert('Elemento eliminado correctamente');
             this.LeerTodo();
           },
           (error) => {
             console.error('Error al eliminar el elemento:', error);
+            console.log(id_room)
           }
         );
     }
   }
+ editarRoom(id_room: number) {
+  const room = this.dataSource.data.find(room => room.id_room === id_room);
+  if (room) {
+    this.roomData = room;
+    const dialogRef = this.dialog.open(FormEditComponent, {
+      disableClose: true,
+      autoFocus: true,
+      closeOnNavigation: false,
+      position: { top: '30px'},
+      width: '700px',
+      data: {
+        roomData: this.roomData
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      this.LeerTodo();
+    });
+  } else {
+    console.error('No se pudo encontrar la habitación con el ID especificado.');
+  }
+}
 }

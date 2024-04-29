@@ -35,13 +35,23 @@ export class HttpService {
     });
     return this.httpCliente.post<iRoom[]>('https://localhost:7237/api/Rooms', room, { headers: headers });
   }
-  Eliminar(id: number){
+  Eliminar(id_room: number){
     const option = {
-     headers: new HttpHeaders({
-         'Content-Type': 'application/json'
-     }),
-     body: id
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      body: id_room
     };
-    return this.httpCliente.delete('https://localhost:7237/api/Rooms/${id}', option);
- }
+    return this.httpCliente.delete(`https://localhost:7237/api/Rooms/${id_room}`, option);
+  }
+  Actualizar(room: iRoom): Observable<iRoom> {
+    const url = `https://localhost:7237/api/Rooms/${room.id_room}`;
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    });
+    return this.httpCliente.put<iRoom>(url, room, { headers: headers });
+  }
 }
+
