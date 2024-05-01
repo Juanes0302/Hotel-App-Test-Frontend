@@ -12,6 +12,16 @@ export interface iRoom {
   status: boolean;
 }
 
+export interface iGuest {
+  id_guest: number;
+  guest_fullname: string;
+  guest_dni: string;
+  guest_phone_number: number;
+  admission_date: Date;
+  departure_date: Date;
+  id_room: number;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -23,6 +33,15 @@ export class HttpService {
     return this.httpCliente.get<iRoom[]>('https://localhost:7237/api/Rooms', {
       params: parametros,
       headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+    });
+  }
+  LeerTodoG(): Observable<iGuest[]> {
+    let parametros = new HttpParams();
+    return this.httpCliente.get<iGuest[]>('https://localhost:7237/api/Guest',{
+      params : parametros,
+      headers:{
         'Access-Control-Allow-Origin': '*',
       },
     });
