@@ -19,7 +19,10 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatMenuModule} from '@angular/material/menu';
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatSelectModule} from '@angular/material/select';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,11 @@ import {MatMenuModule} from '@angular/material/menu';
     MatDialogModule,
     MatRadioModule,
     MatSlideToggleModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule,
+    MatMomentDateModule
     
 
   ],
@@ -64,7 +71,11 @@ import {MatMenuModule} from '@angular/material/menu';
     MatDialogModule,
     MatRadioModule,
     MatSlideToggleModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule,
+    MatMomentDateModule
   ]
 })
 export class GlobalModule { }

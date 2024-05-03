@@ -11,6 +11,7 @@ import { HttpService, iRoom } from 'src/app/services/http.service';
 export class FormComponent implements OnInit {
   formGroup!: FormGroup;
 
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<FormComponent>,
@@ -18,6 +19,7 @@ export class FormComponent implements OnInit {
     private httpService: HttpService
   ) {
     this.initForm();
+
   }
   ngOnInit(): void {}
   cancelar() {
@@ -33,6 +35,7 @@ export class FormComponent implements OnInit {
       status: [true, [Validators.required]],
     });
   }
+ 
   guardar() {
     if(this.formGroup.valid) {
       const formData: iRoom = this.formGroup.value;
