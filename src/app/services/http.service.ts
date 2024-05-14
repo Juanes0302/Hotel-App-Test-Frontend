@@ -113,6 +113,15 @@ export class HttpService {
     return this.httpClient.delete(`https://localhost:7237/api/Guest/${id_guest}`, option);
   }
 
+  EliminarR(id_record: number) {
+    const option = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      body: id_record
+    };
+    return this.httpClient.delete(`https://localhost:7237/api/Records/${id_record}`, option);
+  }
   Actualizar(room: iRoom): Observable<iRoom> {
     const url = `https://localhost:7237/api/Rooms/${room.id_room}`;
     let headers = new HttpHeaders({

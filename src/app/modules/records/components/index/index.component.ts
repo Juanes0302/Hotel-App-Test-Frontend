@@ -37,4 +37,20 @@ export class IndexComponent implements OnInit {
       this.dataSource.data = respuesta;
     });
   }
+  EliminarR(id_record : number){
+    let confirmacion = confirm('¿Está seguro de que desea eliminar este registro?');
+    if (confirmacion) {
+      this.httpService.EliminarR(id_record)
+        .subscribe(
+          () => {
+            alert('Registro eliminado correctamente');
+            this.LeerTodoR();
+          },
+          (error) => {
+            console.error('Error al eliminar el registro:', error);
+            console.log(id_record)
+          }
+        );
+    }
+  }
 }
