@@ -1,0 +1,89 @@
+<div class="" style="padding: .8rem;">
+    <mat-form-field appearance="fill">
+      <mat-label>Search</mat-label>
+      <input matInput>
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    <div class="container-fluid my-3">
+      <div class="row">
+        <div class="col">
+          <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource">
+
+                <!--- Note that these columns can be defined in any order.
+                                  The actual rendered columns are set as a property on the row definition" -->
+                <!-- Position Column -->
+                <ng-container matColumnDef="record_fullname">
+                  <th mat-header-cell *matHeaderCellDef> Record Fullname </th>
+                  <td mat-cell *matCellDef="let element"> {{element.record_fullname}} </td>
+                </ng-container>
+    
+                <!-- Name Column -->
+                <ng-container matColumnDef="record_dni">
+                  <th mat-header-cell *matHeaderCellDef> Record Dni </th>
+                  <td mat-cell *matCellDef="let element"> {{element.record_dni}} </td>
+                </ng-container>
+    
+                <!-- Weight Column -->
+                <ng-container matColumnDef="record_phone_number">
+                  <th mat-header-cell *matHeaderCellDef> Record Phone Number </th>
+                  <td mat-cell *matCellDef="let element"> {{element.record_phone_number}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="record_admission_date">
+                  <th mat-header-cell *matHeaderCellDef> Record Admission Date </th>
+                  <td mat-cell *matCellDef="let element"> {{element.record_admission_date}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="record_departure_date">
+                  <th mat-header-cell *matHeaderCellDef> Record Departure Date </th>s
+                  <td mat-cell *matCellDef="let element"> {{element.record_departure_date}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="record_room">
+                    <th mat-header-cell *matHeaderCellDef> Record Room </th>s
+                    <td mat-cell *matCellDef="let element"> {{element.record_room}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="id_guest">
+                    <th mat-header-cell *matHeaderCellDef> Id Guest </th>s
+                    <td mat-cell *matCellDef="let element"> {{element.id_guest}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="id_room">
+                    <th mat-header-cell *matHeaderCellDef> Id Room </th>s
+                    <td mat-cell *matCellDef="let element"> {{element.id_room}} </td>
+                  </ng-container>
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="menu">
+                  <th mat-header-cell *matHeaderCellDef> Menu </th>
+                  <td mat-cell *matCellDef="let element">
+                    <button mat-icon-button [matMenuTriggerFor]="menu" >
+                      <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                      <button mat-menu-item  >
+                        <mat-icon>delete</mat-icon>
+                        <span>Delete</span>
+                      </button>
+                    </mat-menu>
+                  </td>
+                </ng-container>
+    
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+                <tr class="mat-row" *matNoDataRow="">
+                  <td class="mt-cell" [attr.colspan]="displayedColumns.length">
+                    <div class="mensaje-no-exiten-datos">
+                      <mat-icon class="mx-3">error</mat-icon>
+                      No exiten datos para mostrar
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
