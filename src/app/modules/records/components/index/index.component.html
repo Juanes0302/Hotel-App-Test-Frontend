@@ -32,12 +32,12 @@
     
                 <ng-container matColumnDef="record_admission_date">
                   <th mat-header-cell *matHeaderCellDef> Record Admission Date </th>
-                  <td mat-cell *matCellDef="let element"> {{element.record_admission_date}} </td>
+                  <td mat-cell *matCellDef="let element"> {{element.record_admission_date | date}} </td>
                 </ng-container>
     
                 <ng-container matColumnDef="record_departure_date">
                   <th mat-header-cell *matHeaderCellDef> Record Departure Date </th>s
-                  <td mat-cell *matCellDef="let element"> {{element.record_departure_date}} </td>
+                  <td mat-cell *matCellDef="let element"> {{element.record_departure_date | date}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="record_room">
