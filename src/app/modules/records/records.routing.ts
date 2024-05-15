@@ -4,7 +4,7 @@ import { IndexComponent } from "./components/index/index.component";
 
 export const recordsRoutes: Routes = [
   {
-    path: 'records/index',
+    path: 'home/records/index',
     component: IndexComponent,
     loadChildren: () => import('./records.module').then(m => m.RecordsModule )
   }

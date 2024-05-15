@@ -33,6 +33,11 @@ export interface iRecords{
   id_room?: number;
 }
 
+export interface ilogin{
+  email: string;
+  password: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -187,5 +192,13 @@ export class HttpService {
         observer.error(error);
       });
     });
+  }
+  login(credentials: ilogin): Observable<ilogin[]> {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    });
+    return this.httpClient.post<ilogin[]>('https://localhost:7237/api/Login', credentials, {headers: headers});
   }
 }

@@ -4,6 +4,8 @@ import {NgModule} from '@angular/core'
 import { roomsRoutes } from "./modules/rooms/rooms.routing";
 import { guestRoutes } from "./modules/guest/guest.routing";
 import { recordsRoutes } from "./modules/records/records.routing";
+import { loginRoutes } from "./modules/login/login.routing";
+
 
 
 
@@ -13,7 +15,8 @@ import { recordsRoutes } from "./modules/records/records.routing";
         ...globalRoutes,
         ...roomsRoutes,
         ...guestRoutes,
-        ...recordsRoutes
+        ...recordsRoutes,
+        ...loginRoutes
     ])],
     exports: [RouterModule]
 })

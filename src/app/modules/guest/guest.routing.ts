@@ -4,7 +4,7 @@ import { IndexComponent } from "./components/index/index.component";
 
 export const guestRoutes: Routes = [
   {
-    path: 'guest/index',
+    path: 'home/guest/index',
     component: IndexComponent,
     loadChildren: () => import('./guest.module').then(m => m.GuestModule )
   }
