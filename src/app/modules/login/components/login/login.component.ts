@@ -45,10 +45,21 @@ export class LoginComponent implements OnInit {
       const credentials = this.form.value;
       this.httpService.login(credentials).subscribe(
         (response: any) => {
-          this.router.navigate(['/home']);
+          const userEmail = credentials.email;
+          // función para obtener el id_rol
+          this.httpService.obtenerIdRol(userEmail).subscribe(
+            (idRol: number) => {
+              // Guardar el id_rol en localStorage
+              localStorage.setItem('idRol', idRol.toString());
+              // Redirige al usuario a la página principal
+              this.router.navigate(['/home']);
+            },
+            (error: any) => {
+              console.error('Error al obtener el id_rol:', error);
+            }
+          );
         },
         (error: any) => {
-          // Si las credenciales son inválidas, muestra un mensaje de error
           alert('Invalid email or password');
         }
       );

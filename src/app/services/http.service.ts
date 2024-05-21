@@ -201,4 +201,13 @@ export class HttpService {
     });
     return this.httpClient.post<ilogin[]>('https://localhost:7237/api/Login', credentials, {headers: headers});
   }
+  obtenerIdRol(email: string): Observable<number> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    });
+
+    return this.httpClient.get<number>(`https://localhost:7237/api/Login?email=${email}`, { headers: headers });
+  }
 }
