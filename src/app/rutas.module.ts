@@ -5,9 +5,7 @@ import { roomsRoutes } from "./modules/rooms/rooms.routing";
 import { guestRoutes } from "./modules/guest/guest.routing";
 import { recordsRoutes } from "./modules/records/records.routing";
 import { loginRoutes } from "./modules/login/login.routing";
-
-
-
+import { registerRoutes } from "./modules/register/register.routing";
 
 
 @NgModule({
@@ -16,7 +14,8 @@ import { loginRoutes } from "./modules/login/login.routing";
         ...roomsRoutes,
         ...guestRoutes,
         ...recordsRoutes,
-        ...loginRoutes
+        ...loginRoutes,
+        ...registerRoutes
     ])],
     exports: [RouterModule]
 })

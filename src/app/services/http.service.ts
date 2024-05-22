@@ -34,8 +34,10 @@ export interface iRecords{
 }
 
 export interface ilogin{
+  id?: number
   email: string;
   password: string;
+  id_rol: number
 }
 
 @Injectable({
@@ -69,10 +71,19 @@ export class HttpService {
       },
     });
   }
-
   LeerTodoR(): Observable<iRecords[]> {
     let parametros = new HttpParams();
     return this.httpClient.get<iRecords[]>('https://localhost:7237/api/Records',{
+      params : parametros,
+      headers:{
+        'Access-Control-Allow-Origin': '*',
+      },
+    });
+  }
+
+  LeerTodoU(): Observable<ilogin[]> {
+    let parametros = new HttpParams();
+    return this.httpClient.get<ilogin[]>('https://localhost:7237/api/Login/users',{
       params : parametros,
       headers:{
         'Access-Control-Allow-Origin': '*',
@@ -98,6 +109,15 @@ export class HttpService {
     return this.httpClient.post<iGuest[]>('https://localhost:7237/api/Guest', guest, {headers: headers});
   }
 
+  CrearUsers(login: ilogin): Observable<ilogin[]> {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    });
+    return this.httpClient.post<ilogin[]>('https://localhost:7237/api/Login/register', login, {headers: headers});
+  }
+
   Eliminar(id_room: number) {
     const option = {
       headers: new HttpHeaders({
@@ -117,7 +137,6 @@ export class HttpService {
     };
     return this.httpClient.delete(`https://localhost:7237/api/Guest/${id_guest}`, option);
   }
-
   EliminarR(id_record: number) {
     const option = {
       headers: new HttpHeaders({
@@ -126,6 +145,15 @@ export class HttpService {
       body: id_record
     };
     return this.httpClient.delete(`https://localhost:7237/api/Records/${id_record}`, option);
+  }
+  EliminarU(id: number) {
+    const option = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      body: id
+    };
+    return this.httpClient.delete(`https://localhost:7237/api/Login/${id}`, option);
   }
   Actualizar(room: iRoom): Observable<iRoom> {
     const url = `https://localhost:7237/api/Rooms/${room.id_room}`;
@@ -136,7 +164,16 @@ export class HttpService {
     });
     return this.httpClient.put<iRoom>(url, room, { headers: headers });
   }
-
+  
+  ActualizarU(login: ilogin): Observable<ilogin> {
+    const url = `https://localhost:7237/api/Login/${login.id}`;
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    });
+    return this.httpClient.put<ilogin>(url, login, { headers: headers });
+  }
   ActualizarG(guest: iGuest): Observable<iGuest> {
     const url = `https://localhost:7237/api/Guest/${guest.id_guest}`;
     let headers = new HttpHeaders({
@@ -167,7 +204,6 @@ export class HttpService {
           }, (error) => {
             console.error('Error fetching previous room:', error);
           });
-  
           // Cambiar el estado de la nueva habitación a ocupada
           this.httpClient.get<iRoom>(`https://localhost:7237/api/Rooms/${guest.id_room}`).subscribe((newRoom: iRoom) => {
             newRoom.status = false;
@@ -199,7 +235,7 @@ export class HttpService {
       Accept: 'application/json',
       'Access-Control-Allow-Origin': '*'
     });
-    return this.httpClient.post<ilogin[]>('https://localhost:7237/api/Login', credentials, {headers: headers});
+    return this.httpClient.post<ilogin[]>('https://localhost:7237/api/Login/validate', credentials, {headers: headers});
   }
   obtenerIdRol(email: string): Observable<number> {
     const headers = new HttpHeaders({
