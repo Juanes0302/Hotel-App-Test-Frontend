@@ -24,6 +24,7 @@ import {MatNativeDateModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import {MatMomentDateModule } from '@angular/material-moment-adapter';
 import {FlexLayoutModule } from '@angular/flex-layout';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import {FlexLayoutModule } from '@angular/flex-layout';
     MatNativeDateModule,
     MatSelectModule,
     MatMomentDateModule,
-    FlexLayoutModule 
+    FlexLayoutModule,
+    MatSidenavModule,
     
 
   ],
@@ -79,7 +81,8 @@ import {FlexLayoutModule } from '@angular/flex-layout';
     MatNativeDateModule,
     MatSelectModule,
     MatMomentDateModule,
-    FlexLayoutModule 
+    FlexLayoutModule,
+    MatSidenavModule
   ]
 })
 export class GlobalModule { }

@@ -29,6 +29,7 @@ export interface iRecords{
   record_phone_number: number;
   record_admission_date: Date;
   record_departure_date: Date;
+  record_room: number;
   id_guest?: number;
   id_room?: number;
 }

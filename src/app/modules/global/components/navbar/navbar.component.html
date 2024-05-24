@@ -1,10 +1,30 @@
-<mat-toolbar color="primary" *ngIf="shouldShowNavbar()">
-    <button routerLink="home" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+<mat-toolbar class="gap-3" color="primary" *ngIf="shouldShowNavbar()">
+    <button routerLink="home" mat-button class="button-nav-menu fs-5" aria-label="Example icon-button with menu icon">
         <mat-icon>home</mat-icon>
+        Hotel Deluxe
     </button>
-    <span>Hotel Deluxe</span>
     <span class="example-spacer"></span>
-    Juanes Castillo
+    <button routerLink="home/rooms/index" mat-button class="button-nav-menu fs-6"
+        aria-label="Example icon-button with menu icon">
+        Rooms
+    </button>
+    <button routerLink="home/guest/index" mat-button class="button-nav-menu fs-6"
+        aria-label="Example icon-button with menu icon">
+        Guest
+    </button>
+    <button routerLink="home/records/index" mat-button class="button-nav-menu fs-6"
+        aria-label="Example icon-button with menu icon">
+        Records
+    </button>
+    <button routerLink="home/register/index" mat-button class="button-nav-menu fs-6"
+        aria-label="Example icon-button with menu icon">
+        Users
+    </button>
+    <button mat-button  class="button-nav-menu fs-6" [matMenuTriggerFor]="beforeMenu">Reports</button>
+    <mat-menu #beforeMenu="matMenu" xPosition="before">
+        <button mat-menu-item routerLink="home/records/reports">Records</button>
+    </mat-menu>
+
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" routerLink="">
         <mat-icon>person</mat-icon>
     </button>
