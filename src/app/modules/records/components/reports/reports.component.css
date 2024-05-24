@@ -1,0 +1,48 @@
+/* General styling for the page */
+.title {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.table-container {
+  margin-top: 20px;
+}
+
+/* Styling for the button container */
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.custom-button {
+  width: 250px;
+  text-align: center;
+}
+/* Optional: additional styling for the table */
+table {
+  width: 100%;
+}
+
+th.mat-header-cell, td.mat-cell {
+  text-align: center;
+}
+
+.mensaje-no-existen-datos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

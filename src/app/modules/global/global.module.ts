@@ -22,9 +22,10 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
-import {MatMomentDateModule } from '@angular/material-moment-adapter';
 import {FlexLayoutModule } from '@angular/flex-layout';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {} from "date-fns";
 
 
 @NgModule({
@@ -54,11 +55,9 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-    MatMomentDateModule,
     FlexLayoutModule,
     MatSidenavModule,
-    
-
+    MatCheckboxModule
   ],
   exports:[
     MatToolbarModule,
@@ -80,9 +79,9 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-    MatMomentDateModule,
     FlexLayoutModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatCheckboxModule
   ]
 })
 export class GlobalModule { }

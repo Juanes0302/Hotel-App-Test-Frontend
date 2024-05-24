@@ -2,7 +2,6 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { HttpService, iGuest, iRoom } from 'src/app/services/http.service';
-import * as moment from 'moment';
 
 @Component({
   selector: 'app-form',
