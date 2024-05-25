@@ -1,20 +1,38 @@
 /* General styling for the page */
 .title {
   text-align: center;
-  margin-top: 20px;
   font-size: 24px;
+  font-weight: bold;
+}
+.subtitle{
+  text-align: center;
+  font-size: 20px;
   font-weight: bold;
 }
 
 .form-container {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  flex-wrap: wrap; /* Permite que los elementos se envuelvan a la siguiente línea si no caben en la misma fila */
+  gap: 240px; /* Espacio entre elementos */
   margin: 20px 0;
+  align-items: flex-start; 
+}
+
+/* Establecer el ancho de los elementos de formulario */
+.mat-form-field {
+  flex: 1 ; /* Ocupa todo el espacio disponible en la fila */
+}
+
+.example-section p {
+  display: inline-block; /* Colocar los checkboxes en línea */
+  margin-right: 20px; /* Agregar un espacio entre los checkboxes */
+}
+.h4{
+  text-align: center;
 }
 
 .full-width {
-  width: 100%;
+  width: 15%;
 }
 
 .table-container {
@@ -29,7 +47,7 @@
 }
 
 .custom-button {
-  width: 250px;
+  width: 100%;
   text-align: center;
 }
 /* Optional: additional styling for the table */

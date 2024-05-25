@@ -1,7 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { HttpService, ilogin } from 'src/app/services/http.service';
+import { iLogin } from 'src/app/interfaces/iLogin';
+import { HttpService } from 'src/app/services/http.service';
 
 @Component({
   selector: 'app-form',
@@ -35,7 +36,7 @@ export class FormComponent implements OnInit{
   }
   guardar() {
     if (this.formGroup.valid) {
-      const formData: ilogin = this.formGroup.value;
+      const formData: iLogin = this.formGroup.value;
 
       this.httpService.CrearUsers(formData).subscribe((response) => {
         console.log('The guest has been saved successfully:', response);

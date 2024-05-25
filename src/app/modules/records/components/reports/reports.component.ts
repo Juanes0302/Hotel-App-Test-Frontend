@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { format } from 'date-fns';
-import { HttpService, iRecords, iRoom } from 'src/app/services/http.service';
+import { iRecords } from 'src/app/interfaces/iRecords';
+import { iRoom } from 'src/app/interfaces/iRoom';
+import { HttpService} from 'src/app/services/http.service';
 import { ReportsService } from 'src/app/services/reports.service';
 
 @Component({
@@ -21,6 +24,8 @@ export class ReportsComponent implements OnInit {
   ];
   dataSource = new MatTableDataSource<any>([]);
   recordData: any;
+  
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   range = new FormGroup({
     start: new FormControl<Date | null>(null),
@@ -41,8 +46,8 @@ export class ReportsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.fetchRooms();
-    this.fetchInitialRecords();
+    this.obtenerRooms();
+    this.initialRecords();
 
     // Subscribe to changes in form controls
     this.range.valueChanges.subscribe(() => this.updateDataSource());
@@ -50,7 +55,7 @@ export class ReportsComponent implements OnInit {
     this.rooms.valueChanges.subscribe(() => this.updateDataSource());
   }
 
-  async fetchRooms() {
+  async obtenerRooms() {
     try {
       const registrosRooms = await this.httpService.LeerTodo().toPromise();
       this.availableRooms = registrosRooms || []; // Manejar undefined
@@ -60,10 +65,11 @@ export class ReportsComponent implements OnInit {
     }
   }
 
-  async fetchInitialRecords() {
+  async initialRecords() {
     try {
       const registros = await this.obtenerRegistros();
       this.dataSource.data = registros;
+      this.dataSource.paginator = this.paginator;
     } catch (error) {
       console.error('Error fetching initial records:', error);
       this.dataSource.data = [];

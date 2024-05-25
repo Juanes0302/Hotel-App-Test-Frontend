@@ -6,7 +6,7 @@ import { HttpService } from 'src/app/services/http.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
   styleImage = 'Hotel';
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private httpService: HttpService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.buildForm();
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   buildForm(): void {
     this.form = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
     });
   }
 
@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
               // Guardar el id_rol en localStorage
               localStorage.setItem('idRol', idRol.toString());
               // Redirige al usuario a la página principal
-              this.router.navigate(['/home']);
+              location.href='/home';
             },
             (error: any) => {
               console.error('Error al obtener el id_rol:', error);
@@ -66,4 +66,3 @@ export class LoginComponent implements OnInit {
     }
   }
 }
-

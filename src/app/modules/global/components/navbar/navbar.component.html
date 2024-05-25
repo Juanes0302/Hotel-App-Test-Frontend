@@ -5,22 +5,22 @@
     </button>
     <span class="example-spacer"></span>
     <button routerLink="home/rooms/index" mat-button class="button-nav-menu fs-6"
-        aria-label="Example icon-button with menu icon">
+        aria-label="Example icon-button with menu icon" *ngIf="idRol == 2">
         Rooms
     </button>
     <button routerLink="home/guest/index" mat-button class="button-nav-menu fs-6"
-        aria-label="Example icon-button with menu icon">
+        aria-label="Example icon-button with menu icon" *ngIf="idRol == 2 || idRol == 1">
         Guest
     </button>
     <button routerLink="home/records/index" mat-button class="button-nav-menu fs-6"
-        aria-label="Example icon-button with menu icon">
+        aria-label="Example icon-button with menu icon" *ngIf="idRol == 2">
         Records
     </button>
     <button routerLink="home/register/index" mat-button class="button-nav-menu fs-6"
-        aria-label="Example icon-button with menu icon">
+        aria-label="Example icon-button with menu icon" *ngIf="idRol == 2">
         Users
     </button>
-    <button mat-button  class="button-nav-menu fs-6" [matMenuTriggerFor]="beforeMenu">Reports</button>
+    <button mat-button  class="button-nav-menu fs-6" [matMenuTriggerFor]="beforeMenu" *ngIf="idRol == 2">Reports</button>
     <mat-menu #beforeMenu="matMenu" xPosition="before">
         <button mat-menu-item routerLink="home/records/reports">Records</button>
     </mat-menu>

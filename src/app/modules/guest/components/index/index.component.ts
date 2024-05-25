@@ -36,6 +36,10 @@ export class IndexComponent implements OnInit {
       this.dataSource.data = respuesta;
     });
   }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
   crearGuest(){
     const dialogRef = this.dialog.open(FormComponent, {
       disableClose: true,

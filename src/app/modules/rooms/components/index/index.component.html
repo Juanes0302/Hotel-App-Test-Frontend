@@ -5,7 +5,7 @@
   </button>
   <mat-form-field appearance="fill">
     <mat-label>Search</mat-label>
-    <input matInput>
+    <input matInput (input)="applyFilter($event)">
     <mat-icon matSuffix>search</mat-icon>
   </mat-form-field>
   <div class="container-fluid my-3">

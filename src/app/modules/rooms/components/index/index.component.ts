@@ -38,6 +38,11 @@ export class IndexComponent implements OnInit {
     });
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
   crearRoom() {
     const dialogRef = this.dialog.open(FormComponent, {
       disableClose: true,
@@ -52,6 +57,7 @@ export class IndexComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
+      this.LeerTodo();
     });
   }
   eliminar(id_room: number) {

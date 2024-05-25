@@ -1,8 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { HttpService, iGuest, iRoom } from 'src/app/services/http.service'; // Asegúrate de importar iRoom
+import { HttpService } from 'src/app/services/http.service'; // Asegúrate de importar iRoom
 import { FormComponent } from '../components/form/form.component';
+import { iRoom } from 'src/app/interfaces/iRoom';
+import { iGuest } from 'src/app/interfaces/iGuest';
 
 @Component({
   selector: 'app-form-edit',

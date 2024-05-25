@@ -1,8 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { HttpService, iRoom } from 'src/app/services/http.service';
+import { HttpService } from 'src/app/services/http.service';
 import { FormComponent } from '../form/form.component';
+import { iRoom } from 'src/app/interfaces/iRoom';
 
 @Component({
   selector: 'app-form-edit',
@@ -19,7 +20,7 @@ constructor(
   private fb: FormBuilder,
   private httpService: HttpService
 ) {
-  this.roomData = data.roomData; 
+  this.roomData = data.roomData;
   this.initForm();
 }
 

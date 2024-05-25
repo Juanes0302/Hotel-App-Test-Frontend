@@ -28,6 +28,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {} from "date-fns";
 
 
+
 @NgModule({
   declarations: [
     IndexComponent,
@@ -57,7 +58,8 @@ import {} from "date-fns";
     MatSelectModule,
     FlexLayoutModule,
     MatSidenavModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+
   ],
   exports:[
     MatToolbarModule,
@@ -81,7 +83,8 @@ import {} from "date-fns";
     MatSelectModule,
     FlexLayoutModule,
     MatSidenavModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    
   ]
 })
 export class GlobalModule { }

@@ -1,1 +1,68 @@
-<h1>Dashboard</h1>
+<div class="container mx-auto p-4">
+    <div class="flex justify-between items-center">
+        <div class="text-center">
+            <h1 class="text-xl font-bold">Dashboard</h1>
+        </div>
+    </div>
+
+    <div class="">
+        <div class="grid grid-cols-2 gap-4 ">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Total Revenue</h3>
+                </div>
+                <div class="card-body">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl font-bold">{{ totalRecords }}</span>
+                    </div>
+                    <p class="text-gray-500 mt-2">
+                        Since January</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Total Rooms</h3>
+                </div>
+                <div class="card-body">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl font-bold">{{totalRooms}}</span>
+                    </div>
+                    <p class="text-gray-500 mt-2">
+                        In the whole hotel</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Active Rooms</h3>
+                </div>
+                <div class="card-body">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl font-bold">{{totalGuest}}</span>
+                    </div>
+                    <p class="text-gray-500 mt-2">
+                        rooms occupied at this time</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        Available Rooms</h3>
+                </div>
+                <div class="card-body">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl font-bold">{{totalRoomsActived}}</span>
+                    </div>
+                    <p class="text-gray-500 mt-2">rooms without guests</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="w-full flex-column flex items-center justify-between">
+        <div class="card" id="chart-container">
+            <div class="card-body">
+                <canvas id="chart" class="w-full"></canvas> <!-- Gráfico -->
+            </div>
+        </div>
+    </div>
+</div>

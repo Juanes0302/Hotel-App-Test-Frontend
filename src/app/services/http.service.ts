@@ -1,45 +1,10 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-
-export interface iRoom {
-  id_room: number;
-  room_identity: string;
-  room_type: string;
-  bedroom_numbers: number;
-  bed_numbers: number;
-  number_bathrooms: number;
-  status: boolean;
-}
-
-export interface iGuest {
-  id_guest: number;
-  guest_fullname: string;
-  guest_dni: string;
-  guest_phone_number: number;
-  admission_date: Date;
-  departure_date: Date;
-  id_room: number;
-}
-
-export interface iRecords{
-  id_record: number;
-  record_fullname: string;
-  record_dni: string;
-  record_phone_number: number;
-  record_admission_date: Date ;
-  record_departure_date: Date ;
-  record_room: number;
-  id_guest?: number;
-  id_room?: number;
-}
-
-export interface ilogin{
-  id?: number
-  email: string;
-  password: string;
-  id_rol: number
-}
+import { iRoom } from '../interfaces/iRoom';
+import { iGuest } from '../interfaces/iGuest';
+import { iRecords } from '../interfaces/iRecords';
+import { iLogin } from '../interfaces/iLogin';
 
 @Injectable({
   providedIn: 'root',
@@ -82,9 +47,9 @@ export class HttpService {
     });
   }
 
-  LeerTodoU(): Observable<ilogin[]> {
+  LeerTodoU(): Observable<iLogin[]> {
     let parametros = new HttpParams();
-    return this.httpClient.get<ilogin[]>('https://localhost:7237/api/Login/users',{
+    return this.httpClient.get<iLogin[]>('https://localhost:7237/api/Login/users',{
       params : parametros,
       headers:{
         'Access-Control-Allow-Origin': '*',
@@ -110,13 +75,13 @@ export class HttpService {
     return this.httpClient.post<iGuest[]>('https://localhost:7237/api/Guest', guest, {headers: headers});
   }
 
-  CrearUsers(login: ilogin): Observable<ilogin[]> {
+  CrearUsers(login: iLogin): Observable<iLogin[]> {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Accept: 'application/json',
       'Access-Control-Allow-Origin': '*'
     });
-    return this.httpClient.post<ilogin[]>('https://localhost:7237/api/Login/register', login, {headers: headers});
+    return this.httpClient.post<iLogin[]>('https://localhost:7237/api/Login/register', login, {headers: headers});
   }
 
   Eliminar(id_room: number) {
@@ -166,14 +131,14 @@ export class HttpService {
     return this.httpClient.put<iRoom>(url, room, { headers: headers });
   }
   
-  ActualizarU(login: ilogin): Observable<ilogin> {
+  ActualizarU(login: iLogin): Observable<iLogin> {
     const url = `https://localhost:7237/api/Login/${login.id}`;
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Accept: 'application/json',
       'Access-Control-Allow-Origin': '*'
     });
-    return this.httpClient.put<ilogin>(url, login, { headers: headers });
+    return this.httpClient.put<iLogin>(url, login, { headers: headers });
   }
   ActualizarG(guest: iGuest): Observable<iGuest> {
     const url = `https://localhost:7237/api/Guest/${guest.id_guest}`;
@@ -230,13 +195,13 @@ export class HttpService {
       });
     });
   }
-  login(credentials: ilogin): Observable<ilogin[]> {
+  login(credentials: iLogin): Observable<iLogin[]> {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Accept: 'application/json',
       'Access-Control-Allow-Origin': '*'
     });
-    return this.httpClient.post<ilogin[]>('https://localhost:7237/api/Login/validate', credentials, {headers: headers});
+    return this.httpClient.post<iLogin[]>('https://localhost:7237/api/Login/validate', credentials, {headers: headers});
   }
   obtenerIdRol(email: string): Observable<number> {
     const headers = new HttpHeaders({

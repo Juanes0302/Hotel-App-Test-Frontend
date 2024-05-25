@@ -1,8 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { HttpService, ilogin } from 'src/app/services/http.service';
+import { HttpService } from 'src/app/services/http.service';
 import { FormComponent } from '../components/form/form.component';
+import { iLogin } from 'src/app/interfaces/iLogin';
 
 @Component({
   selector: 'app-form-edit',
@@ -11,7 +12,7 @@ import { FormComponent } from '../components/form/form.component';
 })
 export class FormEditComponent implements OnInit {
   formGroup!: FormGroup;
-  userData: ilogin;
+  userData: iLogin;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -55,7 +56,7 @@ export class FormEditComponent implements OnInit {
 
   guardar() {
     if (this.formGroup.valid) {
-      const formData: ilogin = this.formGroup.value;
+      const formData: iLogin = this.formGroup.value;
       formData.id = this.userData.id;
       this.httpService.ActualizarU(formData).subscribe((response) => {
         console.log('The user has been updated successfully:', response);
