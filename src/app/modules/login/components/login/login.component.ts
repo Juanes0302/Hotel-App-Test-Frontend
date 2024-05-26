@@ -9,27 +9,29 @@ import { HttpService } from 'src/app/services/http.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  // inicializamos variables necesarias
   styleImage = 'Hotel';
   form!: FormGroup;
   errorMessage!: string;
 
+  // Inyectamos dependencias necesarias para el correcto funcionamiento
   constructor(
     private formBuilder: FormBuilder,
-    private httpService: HttpService,
-    private router: Router
+    private httpService: HttpService
   ) {}
 
+  // Inicializamos el formulario en el ngOnInit
   ngOnInit(): void {
     this.buildForm();
   }
-
+  // Metodo para construir el formulario
   buildForm(): void {
     this.form = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
   }
-
+  // Metodo para consumir la api de unsplash para colocar la imagen random
   unsplashClass(): any {
     return {
       'min-height': '100%',
@@ -38,7 +40,7 @@ export class LoginComponent implements OnInit {
       position: 'relative',
     };
   }
-
+  // Metodo para autenticar el usuario,manejar la redireccion al momento de autenticar y almacenar rol del usuario
   login(event: Event): void {
     event.preventDefault();
     if (this.form.valid) {
@@ -52,7 +54,7 @@ export class LoginComponent implements OnInit {
               // Guardar el id_rol en localStorage
               localStorage.setItem('idRol', idRol.toString());
               // Redirige al usuario a la página principal
-              location.href='/home';
+              location.href = '/home';
             },
             (error: any) => {
               console.error('Error al obtener el id_rol:', error);

@@ -4,14 +4,16 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
+  // Inyectamos dependencias necesarias para el correcto funcionamiento
   constructor(private router: Router) {}
-
-  shouldShowNavbar(): boolean {
+  // Metodo para mostrar la Navbar cuando la url sea diferente a "/"
+  ShowNavbar(): boolean {
     return this.router.url !== '/';
   }
+  // Inicializacion de la variable IdRol
   idRol: number | null = null;
 
   ngOnInit(): void {

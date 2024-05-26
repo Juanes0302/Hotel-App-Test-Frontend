@@ -8,11 +8,12 @@
                     <mat-label>Email</mat-label>
                     <input matInput placeholder="Type your email" type="email" formControlName='email'>
                     <mat-icon matPrefix>mail_outline</mat-icon>
-                    <mat-error *nglf="form.controls.email.hasError('email') && !form.controls.email.hasError('required')">
+                    <mat-error
+                        *nglf="form.controls.email.hasError('email') && !form.controls.email.hasError('required')">
                         Please enter a valid email address
                     </mat-error>
                     <mat-error *ngIf="form.controls['email'].hasError('required')">
-                    Email is <strong>required</strong>
+                        Email is <strong>required</strong>
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="full-width">
@@ -29,11 +30,8 @@
             </div>
         </main>
     </div>
-    <div class="login-card mat-elevation-z8"
-           fxFlex=45%
-           fxLayout="column"
-           fxLayoutAlign="end start"
-          [ngStyle]="unsplashClass()">
+    <div class="login-card mat-elevation-z8" fxFlex=45% fxLayout="column" fxLayoutAlign="end start"
+        [ngStyle]="unsplashClass()">
 
         <div class="login-aside-overlay"></div>
         <h1 class="login-welcome-text">Welcome!</h1>

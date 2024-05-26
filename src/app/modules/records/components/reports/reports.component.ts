@@ -5,7 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { format } from 'date-fns';
 import { iRecords } from 'src/app/interfaces/iRecords';
 import { iRoom } from 'src/app/interfaces/iRoom';
-import { HttpService} from 'src/app/services/http.service';
+import { HttpService } from 'src/app/services/http.service';
 import { ReportsService } from 'src/app/services/reports.service';
 
 @Component({
@@ -14,6 +14,7 @@ import { ReportsService } from 'src/app/services/reports.service';
   styleUrls: ['./reports.component.css'],
 })
 export class ReportsComponent implements OnInit {
+  // Declaramos las columnas que vamos utilizar
   displayedColumns: string[] = [
     'record_fullname',
     'record_dni',
@@ -24,37 +25,37 @@ export class ReportsComponent implements OnInit {
   ];
   dataSource = new MatTableDataSource<any>([]);
   recordData: any;
-  
+  // accedemosa una instancia del paginator
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
+  // inicializamos variables
   range = new FormGroup({
     start: new FormControl<Date | null>(null),
     end: new FormControl<Date | null>(null),
   });
   rooms = this._formBuilder.group({
     actived: false,
-    desactived: false
+    desactived: false,
   });
   room = new FormControl([]);
   availableRooms: iRoom[] = [];
   searchTerm: string = '';
-
+  // Inyectamos dependencias necesarias para el correcto funcionamiento
   constructor(
     private httpService: HttpService,
     private generateReport: ReportsService,
     private _formBuilder: FormBuilder
   ) {}
-
+  // Inicializamos la tabla Y las habitaciones en el ngOnInit
   ngOnInit(): void {
     this.obtenerRooms();
     this.initialRecords();
 
-    // Subscribe to changes in form controls
+    //Si se realizan cambios los pasamos al UpdateDataSource.
     this.range.valueChanges.subscribe(() => this.updateDataSource());
     this.room.valueChanges.subscribe(() => this.updateDataSource());
     this.rooms.valueChanges.subscribe(() => this.updateDataSource());
   }
-
+  // Metodo para obtener las habitaciones
   async obtenerRooms() {
     try {
       const registrosRooms = await this.httpService.LeerTodo().toPromise();
@@ -64,7 +65,7 @@ export class ReportsComponent implements OnInit {
       this.availableRooms = []; // En caso de error, inicializar como array vacío
     }
   }
-
+  // Metodo para inicializar los registros
   async initialRecords() {
     try {
       const registros = await this.obtenerRegistros();
@@ -75,7 +76,7 @@ export class ReportsComponent implements OnInit {
       this.dataSource.data = [];
     }
   }
-
+  // Metodo para obtener todos los registros
   async obtenerRegistros(): Promise<iRecords[]> {
     try {
       const registros = await this.httpService.LeerTodoR().toPromise();
@@ -85,7 +86,7 @@ export class ReportsComponent implements OnInit {
       return [];
     }
   }
-
+  // Metodo para actualizar el Data source con los cambios que se realice
   async updateDataSource() {
     try {
       const registros = await this.obtenerRegistros();
@@ -96,7 +97,7 @@ export class ReportsComponent implements OnInit {
         const selectedRooms: number[] = this.room.value || [];
         let filteredRegistros = registros;
 
-        // Filtrar por rango de fechas si ambos están definidos
+        // Filtrar por rango de fechas
         if (startDate && endDate) {
           filteredRegistros = filteredRegistros.filter((registro) => {
             const admissionDate = new Date(registro.record_admission_date);
@@ -109,14 +110,14 @@ export class ReportsComponent implements OnInit {
           });
         }
 
-        // Filtrar por 'actived' y 'id_guest' no nulo
+        // Filtrar por 'actived' y 'desatived'
         const roomsActived = this.rooms.value.actived;
         const roomsDesactives = this.rooms.value.desactived;
         if (roomsActived) {
           filteredRegistros = filteredRegistros.filter(
             (registro) => registro.id_guest !== null
           );
-        }else if(roomsDesactives){
+        } else if (roomsDesactives) {
           filteredRegistros = filteredRegistros.filter(
             (registro) => registro.id_guest == null
           );
@@ -139,7 +140,7 @@ export class ReportsComponent implements OnInit {
               registro.record_phone_number.toString().includes(searchLower)
           );
         }
-
+        // definimos el datasource con los registros filtrados
         this.dataSource.data = filteredRegistros;
       } else {
         console.warn('No records found.');
@@ -150,7 +151,7 @@ export class ReportsComponent implements OnInit {
       this.dataSource.data = [];
     }
   }
-
+  // Metodo para generar el reporte por medio de PDF
   async generarReporte() {
     await this.updateDataSource();
 
@@ -172,18 +173,13 @@ export class ReportsComponent implements OnInit {
         format(new Date(registro.record_departure_date), 'MMM d, yyyy'),
         registro.record_room.toString().trim(),
       ]);
-      console.log(cuerpo);
-      this.generateReport.reports(
-        encabezado,
-        cuerpo,
-        'REPORT LIST',
-        true
-      );
+      // generamos el PDF por medio del servicio generateReport
+      this.generateReport.reports(encabezado, cuerpo, 'REPORT LIST', true);
     } else {
       console.warn('No records found.');
     }
   }
-
+  // Metodo para filtrar registros
   filtrarRegistros() {
     this.updateDataSource();
   }

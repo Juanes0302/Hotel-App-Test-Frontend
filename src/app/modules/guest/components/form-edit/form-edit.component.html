@@ -24,7 +24,8 @@
                 <div class="col-6">
                     <mat-form-field>
                         <mat-label>Arrival Date</mat-label>
-                        <input matInput [matDatepicker]="picker1" placeholder="Arrival" formControlName="admission_date">
+                        <input matInput [matDatepicker]="picker1" placeholder="Arrival"
+                            formControlName="admission_date">
                         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                         <mat-datepicker #picker1></mat-datepicker>
                     </mat-form-field>
@@ -33,14 +34,16 @@
                     <mat-form-field>
                         <mat-label>Choose Room</mat-label>
                         <mat-select formControlName="id_room" placeholder="Choose Room">
-                            <mat-option *ngFor="let room of availableRooms" [value]="room.id_room">{{ room.room_identity }}</mat-option>
+                            <mat-option *ngFor="let room of availableRooms" [value]="room.id_room">{{ room.room_identity
+                                }}</mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
                 <div class="col-6">
                     <mat-form-field>
                         <mat-label>Departure Date</mat-label>
-                        <input matInput [matDatepicker]="picker2" placeholder="Departure" formControlName="departure_date">
+                        <input matInput [matDatepicker]="picker2" placeholder="Departure"
+                            formControlName="departure_date">
                         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                         <mat-datepicker #picker2></mat-datepicker>
                     </mat-form-field>

@@ -7,12 +7,12 @@ import { iRoom } from 'src/app/interfaces/iRoom';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css']
+  styleUrls: ['./form.component.css'],
 })
 export class FormComponent implements OnInit {
+  // Declaramos las variables que vamos a utilizar
   formGroup!: FormGroup;
-
-
+  // Inyectamos dependencias necesarias para el correcto funcionamiento
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<FormComponent>,
@@ -20,12 +20,13 @@ export class FormComponent implements OnInit {
     private httpService: HttpService
   ) {
     this.initForm();
-
   }
   ngOnInit(): void {}
+  // Metodo para cancelar el formulario
   cancelar() {
     this.dialogRef.close();
   }
+  // Metodo para inicializar el formulario
   initForm() {
     this.formGroup = this.fb.group({
       room_identity: ['', [Validators.required]],
@@ -36,17 +37,19 @@ export class FormComponent implements OnInit {
       status: [true, [Validators.required]],
     });
   }
- 
+  //metodo para guardar el formulario
   guardar() {
-    if(this.formGroup.valid) {
+    if (this.formGroup.valid) {
       const formData: iRoom = this.formGroup.value;
-      this.httpService.Crear(formData).subscribe((response) =>{
-        console.log('The room has been saved successfully:', response);
+      this.httpService.Crear(formData).subscribe(
+        (response) => {
+          console.log('The room has been saved successfully:', response);
           this.dialogRef.close();
-      },
-      (error) => {
-        console.error('error saving room:', error);
-      })
+        },
+        (error) => {
+          console.error('error saving room:', error);
+        }
+      );
     }
   }
 }

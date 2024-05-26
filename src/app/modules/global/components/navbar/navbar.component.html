@@ -1,4 +1,4 @@
-<mat-toolbar class="gap-3" color="primary" *ngIf="shouldShowNavbar()">
+<mat-toolbar class="gap-3" color="primary" *ngIf="ShowNavbar()">
     <button routerLink="home" mat-button class="button-nav-menu fs-5" aria-label="Example icon-button with menu icon">
         <mat-icon>home</mat-icon>
         Hotel Deluxe
@@ -20,7 +20,7 @@
         aria-label="Example icon-button with menu icon" *ngIf="idRol == 2">
         Users
     </button>
-    <button mat-button  class="button-nav-menu fs-6" [matMenuTriggerFor]="beforeMenu" *ngIf="idRol == 2">Reports</button>
+    <button mat-button class="button-nav-menu fs-6" [matMenuTriggerFor]="beforeMenu" *ngIf="idRol == 2">Reports</button>
     <mat-menu #beforeMenu="matMenu" xPosition="before">
         <button mat-menu-item routerLink="home/records/reports">Records</button>
     </mat-menu>
